@@ -10,6 +10,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 
 
+mongoose.connect("mongodb+srv://shaji:ponnu123@cluster1.u2cuq.mongodb.net/bookdb?retryWrites=true&w=majority",{ useNewUrlParser: true},{ useUnifiedTopology: true })
 
 app.post('/read',async(req,res)=>{
     
@@ -20,7 +21,8 @@ app.post('/read',async(req,res)=>{
        var result = await bookModel.save();
        res.json(result);
     }
-    catch(error){
+    catch(error)
+    {res.status(500).send(error);
 
     }
 
